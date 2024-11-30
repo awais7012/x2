@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Juliet - Create User</title>
+  </head>
+  <body class="bg-zinc-800 text-white">
+    <div class="flex items-center justify-center min-h-screen">
+      <form
+        action="/register"
+        method="post"
+        class="w-full max-w-lg bg-zinc-900 rounded-lg shadow-lg p-8"
+      >
+        <h1 class="text-4xl font-bold mb-6 text-center">Create User</h1>
+
+        <!-- Name -->
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium mb-2">Name</label>
+          <input
+            id="name"
+            class="w-full px-4 py-2 bg-zinc-800 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="text"
+            placeholder="Enter your name"
+            name="name"
+            required
+          />
+        </div>
+
+        <!-- Username -->
+        <div class="mb-4">
+          <label for="userName" class="block text-sm font-medium mb-2"
+            >Username</label
+          >
+          <input
+            id="userName"
+            class="w-full px-4 py-2 bg-zinc-800 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="text"
+            placeholder="Enter your username"
+            name="userName"
+            required
+          />
+        </div>
+
+        <!-- Age -->
+        <div class="mb-4">
+          <label for="age" class="block text-sm font-medium mb-2">Age</label>
+          <input
+            id="age"
+            class="w-full px-4 py-2 bg-zinc-800 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="number"
+            placeholder="Enter your age"
+            name="age"
+            required
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium mb-2"
+            >Email</label
+          >
+          <input
+            id="email"
+            class="w-full px-4 py-2 bg-zinc-800 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            required
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium mb-2"
+            >Password</label
+          >
+          <input
+            id="password"
+            class="w-full px-4 py-2 bg-zinc-800 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            required
+          />
+        </div>
+
+        <!-- Profile Picture -->
+        <!-- <div class="mb-6">
+          <label for="profilePic" class="block text-sm font-medium mb-2">
+            Profile Picture
+          </label>
+          <input
+            id="profilePic"
+            class="w-full text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600 cursor-pointer"
+            type="file"
+            name="image"
+            accept="image/*"
+          />
+        </div> -->
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

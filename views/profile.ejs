@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <!-- Link to Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-zinc-900 text-white font-sans">
+    <!-- Header and Navigation -->
+    <header class="bg-zinc-800 p-4">
+      <nav class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="/" class="text-blue-400 text-lg font-semibold">Home</a>
+        <a href="/profile" class="text-blue-400 text-lg font-semibold"
+          >Profile</a
+        >
+        <a href="/logout" class="text-red-400 text-lg font-semibold">Logout</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-6">
+      <div class="bg-zinc-800 p-6 rounded-lg shadow-lg mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Create a Post</h2>
+        <form
+          action="/profile"
+          method="POST"
+          enctype="multipart/form-data"
+          class="space-y-4"
+        >
+          <!-- Text post area -->
+          <textarea
+            id="postContent"
+            name="content"
+            placeholder="What's on your mind?"
+            class="resize-none w-full p-4 h-36 rounded-md bg-zinc-700 text-white border-2 border-zinc-600 focus:border-blue-500 outline-none"
+            required
+          ></textarea>
+
+          <!-- File upload field -->
+          <div class="flex flex-col gap-2">
+            <label for="postImage" class="text-zinc-400 font-medium"
+              >Add an Image (Optional):</label
+            >
+            <input
+              id="postImage"
+              type="file"
+              name="image"
+              accept="image/*"
+              class="file-input text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600 transition-all duration-300"
+            />
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            id="addPostBtn"
+            class="w-full bg-blue-500 px-6 py-3 rounded-md text-white hover:bg-blue-600 transition-all duration-300"
+          >
+            Post
+          </button>
+        </form>
+      </div>
+
+      <!-- Display posts -->
+      <div class="posts mt-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Your Posts</h2>
+        <% if (allPosts && allPosts.length > 0) { %>
+        <ul class="space-y-6">
+          <% allPosts.forEach(post => { %>
+          <li class="bg-zinc-800 p-6 rounded-lg shadow-md">
+            <p class="text-white text-lg font-medium mb-4">
+              <%= post.content %>
+            </p>
+            <% if (post.image) { %>
+            <img
+              src="<%= post.image %>"
+              alt="Post Image"
+              class="w-full rounded-md border border-zinc-700"
+            />
+            <% } %>
+          </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <p class="text-zinc-400">No posts yet. Create your first post above!</p>
+        <% } %>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-800 p-4 text-center text-zinc-400">
+      <p>&copy; 2024 Your Website</p>
+    </footer>
+  </body>
+</html>

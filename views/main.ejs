@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Instagram Clone</title>
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <!-- Main Container -->
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-1/5 bg-gray-800 shadow-lg border-r border-gray-700 p-4">
+        <h1 class="text-3xl font-bold text-gray-100 mb-8 text-center">
+          Instagram
+        </h1>
+        <nav class="space-y-6">
+          <a
+            href="/"
+            class="flex items-center p-3 rounded-lg transition-all duration-200 bg-gray-800 hover:bg-gray-700 hover:text-blue-400"
+          >
+            <i class="fas fa-home mr-3"></i> Home
+          </a>
+          <a
+            href="/profile/<%= loggedInUser %>"
+            class="flex items-center p-3 rounded-lg transition-all duration-200 bg-gray-800 hover:bg-gray-700 hover:text-blue-400"
+          >
+            <i class="fas fa-user mr-3"></i> Profile
+          </a>
+          <a
+            href="/profile/<%= loggedInUser %>"
+            class="flex items-center p-3 rounded-lg transition-all duration-200 bg-gray-800 hover:bg-gray-700 hover:text-blue-400"
+          >
+            <i class="fas fa-plus mr-3"></i> Create Post
+          </a>
+          <a
+            href="/likes"
+            class="flex items-center p-3 rounded-lg transition-all duration-200 bg-gray-800 hover:bg-gray-700 hover:text-blue-400"
+          >
+            <i class="fas fa-heart mr-3"></i> Likes
+          </a>
+          <a
+            href="/logout"
+            class="flex items-center p-3 rounded-lg transition-all duration-200 bg-gray-800 hover:bg-red-600 hover:text-black"
+          >
+            <i class="fas fa-sign-out-alt mr-3"></i> Logout
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 overflow-y-scroll">
+        <!-- Search Bar -->
+        <div class="relative mb-8">
+          <input
+            type="text"
+            id="search"
+            placeholder="Search users..."
+            class="w-full p-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
+          />
+          <i class="fas fa-search absolute top-4 right-4 text-gray-400"></i>
+        </div>
+
+        <!-- Main Feed (Posts in Column Layout) -->
+        <h2 class="text-2xl font-bold text-gray-100 mb-6">Feed</h2>
+        <div class="space-y-8">
+          <% allPosts.forEach(post => { %>
+          <article
+            class="bg-gray-800 shadow-md hover:shadow-lg rounded-lg border border-gray-700 transition-shadow duration-300"
+          >
+            <!-- Post Header -->
+            <header class="flex items-center p-4 border-b border-gray-700">
+              <div class="h-10 w-10 rounded-full bg-gray-600 mr-3"></div>
+              <div>
+                <h3 class="font-semibold text-gray-100">
+                  <%= post.user.username %>
+                </h3>
+                <p class="text-gray-400 text-sm">
+                  <%= post.createdAt.toDateString() %>
+                </p>
+              </div>
+            </header>
+
+            <!-- Post Content -->
+            <div class="p-4">
+              <p class="text-white mb-4"><%= post.content || 'no content' %></p>
+
+              <!-- Images Section -->
+              <% if (post.images && post.images.length > 0) { %>
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                <% post.images.forEach(image => { %>
+                <img
+                  src="<%= image %>"
+                  alt="Post Image"
+                  class="w-full rounded-lg border border-gray-700 transform hover:scale-105 transition-transform duration-300"
+                />
+                <% }) %>
+              </div>
+              <% } %>
+
+              <!-- Videos Section -->
+              <% if (post.videos && post.videos.length > 0) { %>
+              <div class="space-y-4">
+                <% post.videos.forEach(video => { %>
+                <video
+                  controls
+                  class="w-full rounded-lg border border-gray-700"
+                >
+                  <source src="<%= video %>" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <% }) %>
+              </div>
+              <% } %>
+            </div>
+
+            <!-- Actions -->
+            <footer
+              class="flex justify-between items-center p-4 text-gray-400 border-t border-gray-700"
+            >
+              <button class="hover:text-red-500 transition-colors duration-200">
+                ❤️ Like
+              </button>
+              <button
+                class="hover:text-blue-400 transition-colors duration-200"
+              >
+                💬 Comment
+              </button>
+            </footer>
+          </article>
+          <% }) %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
